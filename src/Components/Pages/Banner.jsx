@@ -9,7 +9,7 @@ const Banner = () => {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
             Best platform for study in Abroad.
           </h1>
-          <p className=" leading-relaxed text-lg">
+          <p className="text-sm md:text-base leading-relaxed">
             Studying abroad opens doors to world-class education, cultural
             immersion, and global networking. To help you navigate this journey,
             here are some of the best platforms for studying abroad:
@@ -55,7 +55,7 @@ const Banner = () => {
         {/* Right Image */}
         <div className="flex-1 flex justify-center">
           <img
-            className="  h-auto object-cover rounded-lg shadow-lg"
+            className="h-auto object-cover rounded-lg shadow-lg"
             src={banner}
             alt="Study Abroad Banner"
           />

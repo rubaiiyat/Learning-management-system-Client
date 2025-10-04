@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import App from "../../App";
 import Home from "../Pages/Home";
+import AboutEduport from "../Pages/AboutEduport";
 
 const Routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const Routes = createBrowserRouter([
       {
         path: "/contact",
         element: <div>Contact</div>,
+      },
+      {
+        path: "/about",
+        element: <AboutEduport></AboutEduport>,
       },
     ],
   },
