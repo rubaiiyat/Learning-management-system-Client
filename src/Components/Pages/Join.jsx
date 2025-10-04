@@ -13,7 +13,9 @@ const Join = () => {
           <h1 className="text-3xl font-semibold ">
             Apply for 2025 December intakes
           </h1>
-          <button className="btn btn-error">Register Now</button>
+          <button className="btn bg-[#F16623] text-white text-base">
+            Register Now
+          </button>
         </div>
 
         <div className="flex-1  bg-base-300 p-10 rounded-xl  space-y-4">
@@ -22,7 +24,9 @@ const Join = () => {
           <h1 className="text-md md:text-lg">
             Accepted in more than 10K institutions around the world.
           </h1>
-          <button className="btn btn-info">Register Now</button>
+          <button className="btn bg-[#F16623] text-white text-base">
+            Register Now
+          </button>
         </div>
       </div>
     </div>
