@@ -1,7 +1,15 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { AuthContext } from "../Context/AuthProvider";
+import { useContext, useEffect } from "react";
+import toast from "react-hot-toast";
+
 const Register = () => {
+  const { createUser, loading, setLoading, OwnError, setOwnError } =
+    useContext(AuthContext);
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,12 +19,28 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
+      if (data.password != data.confirmPassword) {
+        return setOwnError("Password doesn't match");
+      } else if (data.password.length < 6) {
+        return setOwnError("Password must contain at least 6 characters");
+      }
+
+      const createUser = await createUser(data.email, data.password);
+      if (!createUser) return;
       const response = await axios.post("http://localhost:3000/users", data);
+      toast.success(
+        "🎉 Account created successfully! Please login to continue."
+      );
+      navigate("/login");
+      data.reset();
     } catch (error) {
-      console.log(error);
+      setOwnError(error.message);
     }
   };
 
+  useEffect(() => {
+    if (OwnError) toast.error(OwnError);
+  }, [OwnError]);
   return (
     <div className="mt-10 flex items-center justify-center">
       <div className="w-full max-w-2xl bg-base-100 shadow-xl rounded-2xl border border-base-300 p-10">
@@ -126,13 +150,12 @@ const Register = () => {
               />
             </div>
           </div>
-
           {/* Submit Button */}
           <button
             type="submit"
             className="btn w-full text-lg rounded bg-[#F16623] text-white hover:opacity-90"
           >
-            Create Account
+            {loading ? "Registering....." : "Register"}
           </button>
 
           {/* Login Link */}
