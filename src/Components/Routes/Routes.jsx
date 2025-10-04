@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import AboutEduport from "../Pages/AboutEduport";
 import ErrorPage from "../Pages/ErrorPage";
 import Contact from "../Pages/Contact";
+import Register from "../Profile/Register";
 
 const Routes = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const Routes = createBrowserRouter([
       {
         path: "/profile",
         element: <div>User Profile</div>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
       {
         path: "/contact",

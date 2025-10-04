@@ -1,4 +1,4 @@
-import { Menu, Moon, Sun } from "lucide-react";
+import { CornerRightDown, Menu, Moon, Sun } from "lucide-react";
 import { Link, NavLink } from "react-router";
 const Navbar = () => {
   const navLinks = (
@@ -15,18 +15,20 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/Courses"
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#F16623] font-bold underline text-base"
-              : "hover:underline text-base"
-          }
-        >
-          Courses
-        </NavLink>
-      </li>
+      {
+        <li>
+          <NavLink
+            to="/Courses"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#F16623] font-bold underline text-base"
+                : "hover:underline text-base"
+            }
+          >
+            Courses
+          </NavLink>
+        </li>
+      }
       <li>
         <NavLink
           to="/teachers"
@@ -113,7 +115,31 @@ const Navbar = () => {
             />
             <Moon />
           </label>
-          <a className="btn">Button</a>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn m-1 bg-[#F16623] text-white"
+            >
+              Profile
+              <CornerRightDown />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+            >
+              <li>
+                <Link to={"/login"} className="hover:text-[#F16623]">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to={"/register"} className="hover:text-[#F16623]">
+                  Register
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
