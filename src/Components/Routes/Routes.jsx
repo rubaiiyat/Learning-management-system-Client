@@ -3,6 +3,7 @@ import App from "../../App";
 import Home from "../Pages/Home";
 import AboutEduport from "../Pages/AboutEduport";
 import ErrorPage from "../Pages/ErrorPage";
+import Contact from "../Pages/Contact";
 
 const Routes = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <div>Contact</div>,
+        element: <Contact></Contact>,
       },
       {
         path: "/about",
