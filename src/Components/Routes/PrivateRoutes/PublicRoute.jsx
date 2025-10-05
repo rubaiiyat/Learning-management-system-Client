@@ -8,7 +8,7 @@ const PublicRoute = ({ children }) => {
   const location = useLocation();
 
   if (user) {
-    const from = location.state?.from?.pathname;
+    const from = location.state?.from?.pathname || "/user/dashboard";
     return <Navigate to={from} replace />;
   }
   return children;

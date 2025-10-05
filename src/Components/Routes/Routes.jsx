@@ -8,6 +8,7 @@ import Register from "../Profile/Register";
 import Login from "../Profile/Login";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import PublicRoute from "./PrivateRoutes/PublicRoute";
+import Dashboard from "../Profile/Dashboard";
 
 const Routes = createBrowserRouter([
   {
@@ -35,8 +36,12 @@ const Routes = createBrowserRouter([
         element: <div>Courses</div>,
       },
       {
-        path: "/profile",
-        element: <div>User Profile</div>,
+        path: "/user/dashboard",
+        element: (
+          <PrivateRoutes>
+            <Dashboard></Dashboard>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/register",

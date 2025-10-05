@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../Context/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { loginUser, loading, OwnError } = useContext(AuthContext);
+  const { loginUser, loading, loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -82,6 +83,15 @@ const Login = () => {
             className="btn w-full text-lg rounded bg-[#F16623] text-white hover:opacity-90 transition"
           >
             {loading ? "Login...." : "Login"}
+          </button>
+
+          <button
+            onClick={loginWithGoogle}
+            type="button"
+            className="flex items-center justify-center w-full gap-3 px-4 py-3 rounded-lg border border-gray-300 bg-base-100 hover:bg-base-200 transition shadow-sm hover:cursor-pointer font-medium"
+          >
+            <FcGoogle size={24} />
+            Login with Google
           </button>
 
           {/* Register Link */}

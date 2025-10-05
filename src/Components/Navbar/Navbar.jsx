@@ -125,7 +125,13 @@ const Navbar = () => {
               className="btn m-1 bg-[#F16623] text-white"
             >
               {user ? (
-                "Dashboard"
+                <>
+                  {" "}
+                  <span className="font-semibold">
+                    {user.email.split("@")[0].charAt(0).toUpperCase() +
+                      user.email.split("@")[0].slice(1)}
+                  </span>
+                </>
               ) : (
                 <div className="flex">
                   Profile <CornerRightDown />
@@ -139,8 +145,11 @@ const Navbar = () => {
               {user ? (
                 <>
                   <li>
-                    <Link to={"/dashboard"} className="hover:text-[#F16623]">
-                      Go Dashboard
+                    <Link
+                      to={"/user/dashboard"}
+                      className="hover:text-[#F16623]"
+                    >
+                      Go Profile
                     </Link>
                   </li>
                   <li>

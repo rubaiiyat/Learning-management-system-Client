@@ -5,9 +5,12 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const auth = getAuth(app);
 const AuthContext = createContext(null);
@@ -26,6 +29,8 @@ const AuthProvider = ({ children }) => {
         email,
         password
       );
+
+      await signOut(auth);
 
       return result;
     } catch (error) {
@@ -50,6 +55,26 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // Login With Google
+  const loginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      await axios.post("http://localhost:3000/users", {
+        fullName: user.displayName || "",
+        email: user.email,
+        image: user.photoURL || "",
+        gender: "",
+      });
+      toast.success("Login Successful!");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  // User Logout Section
   const userLogout = async () => {
     setLoading(true);
     try {
@@ -81,6 +106,7 @@ const AuthProvider = ({ children }) => {
     setOwnError,
     createUser,
     loginUser,
+    loginWithGoogle,
     userLogout,
   };
   return (
