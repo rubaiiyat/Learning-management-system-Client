@@ -28,9 +28,7 @@ const Register = () => {
       const userCreated = await createUser(data.email, data.password);
       if (!userCreated) return;
       const response = await axios.post("http://localhost:3000/users", data);
-      toast.success(
-        "🎉 Account created successfully! Please login to continue."
-      );
+      toast.success("Account created successfully! Please login to continue.");
       navigate("/login");
       data.reset();
     } catch (error) {

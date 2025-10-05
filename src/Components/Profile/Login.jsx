@@ -23,7 +23,7 @@ const Login = () => {
         toast.error("Email or password not match!");
         return;
       }
-      toast.success("🎉 Login successful! Welcome back!");
+      toast.success("Login successful! Welcome back!");
       navigate(from, { replace: true });
       reset();
     } catch (error) {

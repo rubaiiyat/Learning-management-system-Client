@@ -55,9 +55,9 @@ const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
       setUser(null);
-      toast.success("✅ Logout successful!");
+      toast.success("Logout successful!");
     } catch (error) {
-      toast.error("❌ Logout failed. Try again!");
+      toast.error("Logout failed. Try again!");
     } finally {
       setLoading(false);
     }
