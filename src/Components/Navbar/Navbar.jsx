@@ -1,6 +1,9 @@
 import { CornerRightDown, Menu, Moon, Sun } from "lucide-react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/AuthProvider";
 const Navbar = () => {
+  const { user, userLogout } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
@@ -121,23 +124,48 @@ const Navbar = () => {
               role="button"
               className="btn m-1 bg-[#F16623] text-white"
             >
-              Profile
-              <CornerRightDown />
+              {user ? (
+                "Dashboard"
+              ) : (
+                <div className="flex">
+                  Profile <CornerRightDown />
+                </div>
+              )}
             </div>
             <ul
               tabIndex={0}
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
-              <li>
-                <Link to={"/login"} className="hover:text-[#F16623]">
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link to={"/register"} className="hover:text-[#F16623]">
-                  Register
-                </Link>
-              </li>
+              {user ? (
+                <>
+                  <li>
+                    <Link to={"/dashboard"} className="hover:text-[#F16623]">
+                      Go Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={userLogout}
+                      className="hover:text-[#F16623]"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to={"/login"} className="hover:text-[#F16623]">
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={"/register"} className="hover:text-[#F16623]">
+                      Register
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
 import toast from "react-hot-toast";
@@ -12,7 +13,7 @@ const auth = getAuth(app);
 const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [OwnError, setOwnError] = useState(false);
 
   // Create User
@@ -49,6 +50,19 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const userLogout = async () => {
+    setLoading(true);
+    try {
+      await signOut(auth);
+      setUser(null);
+      toast.success("✅ Logout successful!");
+    } catch (error) {
+      toast.error("❌ Logout failed. Try again!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -67,6 +81,7 @@ const AuthProvider = ({ children }) => {
     setOwnError,
     createUser,
     loginUser,
+    userLogout,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
