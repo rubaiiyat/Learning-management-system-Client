@@ -39,7 +39,7 @@ const Register = () => {
   };
 
   return (
-    <div className="mt-10 flex items-center justify-center">
+    <div className="mt-10 mb-20 flex items-center justify-center">
       <div className="w-full max-w-2xl bg-base-100 shadow-xl rounded-2xl border border-base-300 p-10">
         {/* Title */}
         <h2 className="text-3xl font-bold text-center mb-2">
