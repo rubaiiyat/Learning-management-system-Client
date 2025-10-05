@@ -1,19 +1,32 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { loading, setLoading } = useContext(AuthContext);
-
+  const { loginUser, loading, OwnError } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data.email, data.password);
+  const onSubmit = async (data) => {
+    try {
+      const res = await loginUser(data.email, data.password);
+      if (!res) {
+        toast.error(OwnError);
+        return;
+      }
+      toast.success("🎉 Login successful! Welcome back!");
+      navigate("/");
+      reset();
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   return (

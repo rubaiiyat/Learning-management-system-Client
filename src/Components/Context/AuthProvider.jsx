@@ -1,5 +1,9 @@
 import React, { createContext, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
 import toast from "react-hot-toast";
 
@@ -10,6 +14,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [OwnError, setOwnError] = useState(false);
 
+  // Create User
   const createUser = async (email, password) => {
     setLoading(true);
     setOwnError(null);
@@ -29,6 +34,20 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // Login User
+  const loginUser = async (email, password) => {
+    setLoading(true);
+    setOwnError(null);
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      return result;
+    } catch (error) {
+      setOwnError("Email or password not match!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const userInfo = {
     user,
     setUser,
@@ -37,6 +56,7 @@ const AuthProvider = ({ children }) => {
     OwnError,
     setOwnError,
     createUser,
+    loginUser,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
