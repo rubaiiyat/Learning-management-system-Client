@@ -7,6 +7,7 @@ import Contact from "../Pages/Contact";
 import Register from "../Profile/Register";
 import Login from "../Profile/Login";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import PublicRoute from "./PrivateRoutes/PublicRoute";
 
 const Routes = createBrowserRouter([
   {
@@ -39,11 +40,19 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <Register></Register>,
+        element: (
+          <PublicRoute>
+            <Register></Register>
+          </PublicRoute>
+        ),
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: (
+          <PublicRoute>
+            <Login></Login>
+          </PublicRoute>
+        ),
       },
       {
         path: "/contact",
