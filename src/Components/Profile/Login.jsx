@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 const Login = () => {
   const { loginUser, loading, OwnError } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -18,11 +20,11 @@ const Login = () => {
     try {
       const res = await loginUser(data.email, data.password);
       if (!res) {
-        toast.error(OwnError);
+        toast.error("Email or password not match!");
         return;
       }
       toast.success("🎉 Login successful! Welcome back!");
-      navigate("/");
+      navigate(from, { replace: true });
       reset();
     } catch (error) {
       toast.error(error);
@@ -79,7 +81,7 @@ const Login = () => {
             type="submit"
             className="btn w-full text-lg rounded bg-[#F16623] text-white hover:opacity-90 transition"
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Login...." : "Login"}
           </button>
 
           {/* Register Link */}
