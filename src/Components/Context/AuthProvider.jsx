@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
+import toast from "react-hot-toast";
 
 const auth = getAuth(app);
 const AuthContext = createContext(null);
@@ -21,7 +22,7 @@ const AuthProvider = ({ children }) => {
 
       return result;
     } catch (error) {
-      setOwnError("This email is already used.");
+      toast.error("This email is already used.");
       return null;
     } finally {
       setLoading(false);

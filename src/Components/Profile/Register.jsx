@@ -20,13 +20,13 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       if (data.password != data.confirmPassword) {
-        return setOwnError("Password doesn't match");
+        return toast.error("Password doesn't match");
       } else if (data.password.length < 6) {
-        return setOwnError("Password must contain at least 6 characters");
+        return toast.error("Password must contain at least 6 characters");
       }
 
-      const createUser = await createUser(data.email, data.password);
-      if (!createUser) return;
+      const userCreated = await createUser(data.email, data.password);
+      if (!userCreated) return;
       const response = await axios.post("http://localhost:3000/users", data);
       toast.success(
         "🎉 Account created successfully! Please login to continue."
@@ -38,9 +38,6 @@ const Register = () => {
     }
   };
 
-  useEffect(() => {
-    if (OwnError) toast.error(OwnError);
-  }, [OwnError]);
   return (
     <div className="mt-10 flex items-center justify-center">
       <div className="w-full max-w-2xl bg-base-100 shadow-xl rounded-2xl border border-base-300 p-10">
