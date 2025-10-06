@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Edit3, BookOpen, Award } from "lucide-react";
 import { AuthContext } from "../Context/AuthProvider";
 import axios from "axios";
+import { Link } from "react-router";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -46,39 +47,13 @@ const Dashboard = () => {
               <p className="capitalize">{userData?.gender}</p>
             </div>
 
-            {/*  <button
-              onClick={() => setEditMode(!editMode)}
-              className="mt-4 flex items-center gap-2 bg-[#F16623] text-white px-4 py-2 rounded-full hover:bg-[#d4551d] transition"
+            <Link
+              to={"/user/update-profile"}
+              className="mt-4 flex items-center gap-2 bg-[#F16623] text-white px-4 py-2 rounded-full hover:bg-[#f97238] transition hover:cursor-pointer"
             >
               <Edit3 size={18} /> Edit Profile
-            </button> */}
+            </Link>
           </div>
-
-          {/* Edit Profile Form */}
-          {/*  {editMode && (
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold mb-2 text-base-content">
-                Update Profile
-              </h3>
-              <input
-                type="text"
-                name="name"
-                value=""
-                className="w-full p-2 border border-base-300 bg-base-100 rounded-lg mb-2 focus:outline-none focus:border-[#F16623]"
-                placeholder="Enter your name"
-              />
-              <input
-                type="text"
-                name="photo"
-                value=""
-                className="w-full p-2 border border-base-300 bg-base-100 rounded-lg mb-2 focus:outline-none focus:border-[#F16623]"
-                placeholder="Enter photo URL"
-              />
-              <button className="bg-[#F16623] text-white w-full py-2 rounded-lg hover:bg-[#d4551d] transition">
-                Save Changes
-              </button>
-            </div>
-          )} */}
         </div>
 
         {/* Middle: Assignments List */}

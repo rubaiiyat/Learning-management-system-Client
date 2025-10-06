@@ -9,6 +9,7 @@ import Login from "../Profile/Login";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import PublicRoute from "./PrivateRoutes/PublicRoute";
 import Dashboard from "../Profile/Dashboard";
+import UpdateProfile from "../Profile/UpdateProfile";
 
 const Routes = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const Routes = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Dashboard></Dashboard>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/user/update-profile",
+        element: (
+          <PrivateRoutes>
+            <UpdateProfile></UpdateProfile>
           </PrivateRoutes>
         ),
       },
