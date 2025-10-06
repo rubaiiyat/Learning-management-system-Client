@@ -1,9 +1,123 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Context/AuthProvider";
+import { Link, useNavigate } from "react-router";
+import axios from "axios";
+import { ArrowBigLeft } from "lucide-react";
+import Swal from "sweetalert2";
 
 const UpdateProfile = () => {
+  const { user } = useContext(AuthContext);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    image: "",
+    gender: "",
+  });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user?.email) {
+      axios
+        .get(`http://localhost:3000/users?email=${user.email}`)
+        .then((res) => {
+          const userData = res.data.result[0];
+          setFormData({
+            fullName: userData.fullName,
+            image: userData.image,
+            gender: userData.gender,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    Swal.fire({
+      title: "Are you sure you want to save these changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .put(`http://localhost:3000/user/update/${user.email}`, formData)
+          .then((res) => {
+            Swal.fire("Saved!", "", "success");
+            navigate("/user/dashboard");
+          })
+          .catch((err) => {
+            Swal.fire("Error!", "Something went wrong", "error");
+            console.log(err);
+          });
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+        navigate("/user/dashboard");
+      }
+    });
+  };
+
   return (
     <div>
-      <h1>This is update profile</h1>
+      <div className="flex justify-center items-center min-h-screen ">
+        <div className="bg-base-200 p-8 rounded-2xl shadow-xl w-96">
+          <h2 className="text-2xl font-semibold text-center mb-6">
+            Update Profile
+          </h2>
+
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name"
+              value={formData.fullName}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              className="select select-bordered w-full"
+            >
+              <option disabled value="">
+                Select Gender
+              </option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+
+            <input
+              type="text"
+              name="image"
+              placeholder="Profile Image URL"
+              value={formData.image}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+
+            <button
+              type="submit"
+              className="btn bg-[#F16623] text-white hover:bg-[#f97238]"
+            >
+              Save Changes
+            </button>
+            <Link
+              to="/user/dashboard"
+              className="btn bg-[#F16623] text-white hover:bg-[#f97238]"
+            >
+              <ArrowBigLeft /> Back to dashboard
+            </Link>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
