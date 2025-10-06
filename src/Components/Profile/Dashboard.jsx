@@ -18,7 +18,6 @@ const Dashboard = () => {
         .catch((err) => console.log(err));
     }
   }, [user]);
-  console.log(userData?.email);
   return (
     <div className=" bg-base-100 p-6 transition-colors duration-300">
       {/* Header */}
