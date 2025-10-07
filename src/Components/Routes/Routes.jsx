@@ -10,6 +10,8 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import PublicRoute from "./PrivateRoutes/PublicRoute";
 import Dashboard from "../Profile/Dashboard";
 import UpdateProfile from "../Profile/UpdateProfile";
+import AdminLogin from "../Admin/AdminAuth/AdminLogin";
+import AdminDashboard from "../Admin/AdminDashboard/AdminDashboard";
 
 const Routes = createBrowserRouter([
   {
@@ -79,6 +81,16 @@ const Routes = createBrowserRouter([
       {
         path: "*",
         element: <ErrorPage></ErrorPage>,
+      },
+
+      // Admin Part
+      {
+        path: "/admin/login",
+        element: <AdminLogin></AdminLogin>,
+      },
+      {
+        path: "/admin/dashboard",
+        element: <AdminDashboard></AdminDashboard>,
       },
     ],
   },
