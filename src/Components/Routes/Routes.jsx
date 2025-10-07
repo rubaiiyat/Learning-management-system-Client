@@ -12,6 +12,7 @@ import Dashboard from "../Profile/Dashboard";
 import UpdateProfile from "../Profile/UpdateProfile";
 import AdminLogin from "../Admin/AdminAuth/AdminLogin";
 import AdminDashboard from "../Admin/AdminDashboard/AdminDashboard";
+import AdminRegister from "../Admin/AdminAuth/AdminRegister";
 
 const Routes = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const Routes = createBrowserRouter([
       {
         path: "/admin/dashboard",
         element: <AdminDashboard></AdminDashboard>,
+      },
+      {
+        path: "/admin/register",
+        element: <AdminRegister></AdminRegister>,
       },
     ],
   },

@@ -8,6 +8,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { Link } from "react-router";
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -48,39 +49,39 @@ const AdminDashboard = () => {
           </button>
         </div>
         <nav className="space-y-3">
-          <a
-            href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-base-300 transition text-sm md:text-base"
+          <Link
+            to={"/admin/register"}
+            className="flex items-center gap-3 p-2 rounded  transition text-sm md:text-base hover:bg-[#F16623]/10 hover:text-[#F16623]"
           >
             <UserPlus size={18} /> Add New Admin
-          </a>
+          </Link>
           <a
             href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-base-300 transition text-sm md:text-base"
+            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
           >
             <BookOpen size={18} /> Add Course
           </a>
           <a
             href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-base-300 transition text-sm md:text-base"
+            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
           >
             <ClipboardList size={18} /> Assignment Marks
           </a>
           <a
             href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-base-300 transition text-sm md:text-base"
+            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
           >
             <Users size={18} /> Manage Students
           </a>
           <a
             href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-base-300 transition text-sm md:text-base"
+            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
           >
             <Settings size={18} /> Settings
           </a>
           <a
             href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-base-300 transition text-sm md:text-base"
+            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623]0 transition text-sm md:text-base"
           >
             <Settings size={18} /> Logout
           </a>
