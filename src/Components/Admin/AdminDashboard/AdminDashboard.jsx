@@ -55,12 +55,12 @@ const AdminDashboard = () => {
           >
             <UserPlus size={18} /> Add New Admin
           </Link>
-          <a
-            href="#"
+          <Link
+            to={"/admin/add-course"}
             className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
           >
             <BookOpen size={18} /> Add Course
-          </a>
+          </Link>
           <a
             href="#"
             className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"

@@ -13,6 +13,7 @@ import UpdateProfile from "../Profile/UpdateProfile";
 import AdminLogin from "../Admin/AdminAuth/AdminLogin";
 import AdminDashboard from "../Admin/AdminDashboard/AdminDashboard";
 import AdminRegister from "../Admin/AdminAuth/AdminRegister";
+import AddCourse from "../Admin/AddCourse/AddCourse";
 
 const Routes = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ const Routes = createBrowserRouter([
       {
         path: "/admin/register",
         element: <AdminRegister></AdminRegister>,
+      },
+      {
+        path: "/admin/add-course",
+        element: <AddCourse></AddCourse>,
       },
     ],
   },

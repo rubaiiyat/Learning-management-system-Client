@@ -1,14 +1,50 @@
 import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
+import { useNavigate } from "react-router";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const AdminRegister = () => {
+  const { createUser, loading } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      if (data.password != data.confirmPassword) {
+        return toast.error("Password doesn't match");
+      } else if (data.password.length < 6) {
+        return toast.error("Password must contain at least 6 characters");
+      }
+
+      const userCreated = await createUser(data.email, data.password);
+      if (!userCreated) return;
+      const response = await axios.post("http://localhost:3000/users", data);
+      toast.success("New admin created successfully!");
+      navigate("/admin/dashboard");
+      reset();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="mt-10 mb-20 flex items-center justify-center">
       <div className="w-full max-w-2xl bg-base-100 shadow-xl rounded-2xl border border-base-300 p-10">
         {/* Title */}
-        <h2 className="text-3xl font-bold text-center mb-2">Add New User</h2>
+        <h2 className="text-3xl font-bold text-center mb-2">Add New Admin</h2>
 
         {/* Form */}
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Full Name + Email */}
           <div className="grid md:grid-cols-2 gap-5">
             <div className="form-control">
@@ -19,6 +55,7 @@ const AdminRegister = () => {
                 type="text"
                 name="fullName"
                 placeholder="Enter full name"
+                {...register("fullName", { required: true })}
                 className="input input-bordered w-full rounded"
                 required
               />
@@ -32,6 +69,7 @@ const AdminRegister = () => {
                 type="email"
                 name="email"
                 placeholder="Enter email"
+                {...register("email", { required: true })}
                 className="input input-bordered w-full rounded"
                 required
               />
@@ -50,6 +88,7 @@ const AdminRegister = () => {
                 type="url"
                 name="image"
                 placeholder="Paste image URL"
+                {...register("image", { required: true })}
                 className="input input-bordered w-full rounded"
               />
             </div>
@@ -60,6 +99,7 @@ const AdminRegister = () => {
               </label>
               <select
                 name="gender"
+                {...register("gender", { required: true })}
                 className="select select-bordered w-full rounded"
                 required
               >
@@ -81,6 +121,7 @@ const AdminRegister = () => {
                 type="password"
                 name="password"
                 placeholder="Enter password"
+                {...register("password", { required: true })}
                 className="input input-bordered w-full rounded"
                 required
               />
@@ -94,6 +135,7 @@ const AdminRegister = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="Re-enter password"
+                {...register("confirmPassword", { required: true })}
                 className="input input-bordered w-full rounded"
                 required
               />
@@ -107,11 +149,12 @@ const AdminRegister = () => {
             </label>
             <select
               name="role"
+              {...register("role", { required: true })}
               className="select select-bordered w-full rounded"
-              defaultValue="admin"
+              defaultValue="Admin"
             >
-              <option value="student">Student</option>
-              <option value="admin">Admin</option>
+              <option value="Student">Student</option>
+              <option value="Admin">Admin</option>
             </select>
           </div>
 
@@ -120,7 +163,7 @@ const AdminRegister = () => {
             type="submit"
             className="btn w-full text-lg rounded bg-[#F16623] text-white hover:opacity-90"
           >
-            Add User
+            Add Admin
           </button>
         </form>
       </div>
