@@ -146,7 +146,7 @@ const AddCourse = () => {
 
             <button
               type="button"
-              className="btn w-full text-lg rounded bg-[#F16623] text-white hover:opacity-90 mb-4"
+              className="btn w-4/12 text-lg rounded bg-success  text-white hover:opacity-90 mb-4"
               onClick={() =>
                 append({ title: "", youtube: "", duration: "", level: "" })
               }
@@ -164,7 +164,7 @@ const AddCourse = () => {
           </button>
           <Link
             to={"/admin/dashboard"}
-            className="btn w-full text-lg rounded bg-[#F16623] text-white hover:opacity-90"
+            className="btn w-full text-lg rounded bg-base-300 text-[#F16623] hover:opacity-90"
           >
             Back To Dashboard
           </Link>
