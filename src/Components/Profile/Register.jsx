@@ -115,6 +115,14 @@ const Register = () => {
             </div>
           </div>
 
+          {/* Hidden Role */}
+          <input
+            type="hidden"
+            name="role"
+            value="Student"
+            {...register("role")}
+          />
+
           {/* Password + Confirm Password */}
           <div className="grid md:grid-cols-2 gap-5">
             <div className="form-control">
