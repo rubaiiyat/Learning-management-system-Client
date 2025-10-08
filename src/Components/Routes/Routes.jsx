@@ -43,9 +43,13 @@ const Routes = createBrowserRouter([
         element: <Courses></Courses>,
       },
       {
-        path: `/course/:id/:title`,
-        element: <CourseDetails></CourseDetails>,
-        loader: ({ params }) => `http://localhost:3000/course/${params.id}`,
+        path: "/course/:id/:title",
+        element: <CourseDetails />,
+        loader: async ({ params }) => {
+          const res = await fetch(`http://localhost:3000/course/${params.id}`);
+          const result = await res.json();
+          return result;
+        },
       },
       {
         path: "/user/dashboard",
