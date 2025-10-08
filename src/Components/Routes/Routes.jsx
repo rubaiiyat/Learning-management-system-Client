@@ -14,6 +14,7 @@ import AdminLogin from "../Admin/AdminAuth/AdminLogin";
 import AdminDashboard from "../Admin/AdminDashboard/AdminDashboard";
 import AdminRegister from "../Admin/AdminAuth/AdminRegister";
 import AddCourse from "../Admin/AddCourse/AddCourse";
+import Courses from "../Pages/Courses";
 
 const Routes = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <div>Courses</div>,
+        element: <Courses></Courses>,
       },
       {
         path: "/user/dashboard",

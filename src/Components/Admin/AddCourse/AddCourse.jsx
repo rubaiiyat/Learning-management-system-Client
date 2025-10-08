@@ -8,6 +8,8 @@ const AddCourse = () => {
     defaultValues: {
       title: "",
       description: "",
+      price: "",
+      image: "",
       category: "",
       classes: [{ title: "", youtube: "", duration: "", level: "" }],
     },
@@ -20,12 +22,11 @@ const AddCourse = () => {
 
   const onSubmit = async (data) => {
     try {
-      // backend e POST request
       const response = await axios.post("http://localhost:3000/courses", data);
 
       if (response.status === 200) {
         toast.success(`Course "${data.title}" added successfully!`);
-        reset(); // form reset
+        reset();
       } else {
         toast.error("Failed to add course. Try again.");
       }
@@ -72,22 +73,50 @@ const AddCourse = () => {
             ></textarea>
           </div>
 
-          {/* Category */}
+          {/* Course Price */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-medium">Category</span>
+              <span className="label-text font-medium">Course Price ($)</span>
             </label>
-            <select
-              {...register("category", { required: true })}
-              className="select select-bordered w-full rounded"
-            >
-              <option value="">Select category</option>
-              <option value="ielts">IELTS</option>
-              <option value="toefl">TOEFL</option>
-              <option value="gre">GRE</option>
-              <option value="gmat">GMAT</option>
-              <option value="pte">PTE</option>
-            </select>
+            <input
+              type="number"
+              {...register("price", { required: true, min: 0 })}
+              placeholder="Enter course price in BDT"
+              className="input input-bordered w-full rounded"
+            />
+          </div>
+
+          {/* Image + Category */}
+          <div className="grid md:grid-cols-2 gap-5">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text font-medium">Cover Image Link</span>
+              </label>
+              <input
+                type="url"
+                {...register("image", { required: true })}
+                placeholder="Paste your image URL"
+                className="input input-bordered w-full rounded"
+              />
+            </div>
+
+            {/* Category */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text font-medium">Category</span>
+              </label>
+              <select
+                {...register("category", { required: true })}
+                className="select select-bordered w-full rounded"
+              >
+                <option value="">Select category</option>
+                <option value="IELTS">IELTS</option>
+                <option value="TOEFL">TOEFL</option>
+                <option value="GRE">GRE</option>
+                <option value="GMAT">GMAT</option>
+                <option value="PTE">PTE</option>
+              </select>
+            </div>
           </div>
 
           {/* Dynamic Classes */}
@@ -114,6 +143,7 @@ const AddCourse = () => {
                     className="input input-bordered w-full rounded"
                   />
                 </div>
+
                 <div className="grid md:grid-cols-2 gap-4 mt-4">
                   <input
                     {...register(`classes.${index}.duration`)}
@@ -146,7 +176,7 @@ const AddCourse = () => {
 
             <button
               type="button"
-              className="btn w-4/12 text-lg rounded bg-success  text-white hover:opacity-90 mb-4"
+              className="btn w-4/12 text-lg rounded bg-success text-white hover:opacity-90 mb-4"
               onClick={() =>
                 append({ title: "", youtube: "", duration: "", level: "" })
               }
@@ -162,6 +192,7 @@ const AddCourse = () => {
           >
             Add Course
           </button>
+
           <Link
             to={"/admin/dashboard"}
             className="btn w-full text-lg rounded bg-base-300 text-[#F16623] hover:opacity-90"
