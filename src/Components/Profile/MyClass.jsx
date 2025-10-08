@@ -33,11 +33,11 @@ const MyClass = () => {
   return (
     <div className="py-12 px-6 flex flex-col items-center">
       <h1 className="text-3xl font-bold text-[#F16623] mb-8">My Classes</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
         {courses.map((course) => (
           <div
             key={course._id}
-            className="rounded-xl border border-base-300 shadow-md p-4 bg-white"
+            className="rounded-xl border border-base-300 shadow-md p-4 "
           >
             <img
               src={course.image}
@@ -47,9 +47,7 @@ const MyClass = () => {
             <h2 className="text-xl font-semibold text-[#F16623] mb-2">
               {course.title}
             </h2>
-            <p className="text-gray-600 mb-3">
-              {course.description?.slice(0, 80)}...
-            </p>
+            <p className=" mb-3">{course.description?.slice(0, 80)}...</p>
             <Link
               to={`/myclass/${course._id}/${course.title
                 .toLowerCase()
