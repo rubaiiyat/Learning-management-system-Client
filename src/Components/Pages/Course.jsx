@@ -46,7 +46,7 @@ const Course = ({ course }) => {
 
         {/* Button */}
         <Link
-          to={`/courses/${_id}/${title.toLowerCase().replace(/\s+/g, "-")}`}
+          to={`/course/${_id}/${title.toLowerCase().replace(/\s+/g, "-")}`}
           className="btn bg-[#F16623] hover:opacity-90 text-white rounded-xl mt-3 w-full"
         >
           View Details

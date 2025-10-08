@@ -15,6 +15,7 @@ import AdminDashboard from "../Admin/AdminDashboard/AdminDashboard";
 import AdminRegister from "../Admin/AdminAuth/AdminRegister";
 import AddCourse from "../Admin/AddCourse/AddCourse";
 import Courses from "../Pages/Courses";
+import CourseDetails from "../Pages/CourseDetails";
 
 const Routes = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ const Routes = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses></Courses>,
+      },
+      {
+        path: `/course/:id/:title`,
+        element: <CourseDetails></CourseDetails>,
+        loader: ({ params }) => `http://localhost:3000/course/${params.id}`,
       },
       {
         path: "/user/dashboard",
