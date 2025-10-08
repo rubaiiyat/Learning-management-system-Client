@@ -1,24 +1,53 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, Link, useNavigate, useLocation } from "react-router";
 import { AuthContext } from "../Context/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const course = data?.result;
-  const { title, image, description, category, price, classes } = course;
+  const { _id, title, image, description, category, price, classes } = course;
+  const [enrolled, setEnrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`http://localhost:3000/myclasses?email=${user.email}`)
+        .then((res) => {
+          const enrolledCourse = res.data.courses.map((c) => c._id);
+          if (enrolledCourse.includes(_id.toString())) {
+            setEnrolled(true);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user, _id]);
+
   if (!course) {
     return <div className="text-center py-20 text-lg">loading...</div>;
   }
 
-  const handleEnroll = () => {
+  const handleEnroll = async () => {
     if (!user) {
       toast.error("You need to login first!");
       navigate("/login", { state: { from: location } });
       return;
+    }
+
+    try {
+      const email = user.email;
+      const res = await axios.post("http://localhost:3000/enroll", {
+        email,
+        courseId: _id,
+      });
+      toast.success(res.data.message);
+      setEnrolled(true);
+    } catch (error) {
+      toast.error("Enroll Failed");
     }
   };
 
@@ -73,12 +102,27 @@ const CourseDetails = () => {
 
           {/* Enroll Button */}
           <div className="mt-4 flex justify-start">
-            <button
-              onClick={handleEnroll}
-              className="btn bg-[#F16623] text-white text-lg rounded-xl px-6 py-2 hover:opacity-90 transition"
-            >
-              Enroll Now
-            </button>
+            {enrolled ? (
+              <>
+                <Link
+                  to={`/myclass/${_id}/${title
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                  className="btn bg-[#F16623] text-white text-lg rounded-xl px-6 py-2 hover:opacity-90 transition"
+                >
+                  Go to class
+                </Link>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={handleEnroll}
+                  className="btn bg-[#F16623] text-white text-lg rounded-xl px-6 py-2 hover:opacity-90 transition"
+                >
+                  Enroll Now
+                </button>
+              </>
+            )}
           </div>
 
           {/* Back Link */}
