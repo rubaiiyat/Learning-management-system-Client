@@ -1,63 +1,88 @@
-import React from "react";
-import { useLoaderData, Link } from "react-router";
+import React, { useContext } from "react";
+import { useLoaderData, Link, useNavigate, useLocation } from "react-router";
+import { AuthContext } from "../Context/AuthProvider";
+import toast from "react-hot-toast";
 
 const CourseDetails = () => {
+  const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const course = data?.result;
-
+  const { title, image, description, category, price, classes } = course;
+  const navigate = useNavigate();
+  const location = useLocation();
   if (!course) {
     return <div className="text-center py-20 text-lg">loading...</div>;
   }
 
-  const { title, image, description, category, price, classes } = course;
+  const handleEnroll = () => {
+    if (!user) {
+      toast.error("You need to login first!");
+      navigate("/login", { state: { from: location } });
+      return;
+    }
+  };
 
   return (
     <div className="py-12 px-6 flex justify-center">
       <div className="w-full max-w-5xl rounded-2xl shadow-xl border border-base-300 p-6 flex flex-col md:flex-row gap-6">
-        <div className="md:w-1/3 flex justify-center">
+        {/* Left: Fixed Image */}
+        <div className="md:w-48 flex justify-center">
           <img
             src={image}
             alt={title}
-            className="w-48 h-48 md:w-full md:h-full object-cover rounded-xl"
+            className="w-48 h-48 md:w-48 md:h-48 object-cover rounded-xl flex-shrink-0"
           />
         </div>
 
-        {/* Right: Course Details */}
-        <div className="md:w-2/3 flex flex-col justify-between">
+        {/* Right: Details */}
+        <div className="md:w-2/3 flex flex-col gap-4">
+          {/* Title & Description */}
           <div>
-            <h1 className="text-3xl font-bold text-[#F16623] mb-3">{title}</h1>
-            <p className="text-base-content/80 mb-4">{description}</p>
+            <h1 className="text-3xl font-bold text-[#F16623] mb-2">{title}</h1>
+            <p className="text-base-content/80 mb-3">{description}</p>
 
             {/* Category & Price */}
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-3">
               <span className="badge badge-outline capitalize">{category}</span>
               <span className="text-green-600 font-semibold text-lg">
                 ${price}
               </span>
             </div>
+          </div>
 
-            {/* Classes List */}
+          {/* Classes List in Scrollable Box */}
+          <div>
             <h2 className="text-xl font-semibold mb-2 text-[#F16623]">
               Classes
             </h2>
-            <ol className="list-decimal list-inside space-y-2">
-              {classes?.map((cls, idx) => (
-                <li key={idx} className="text-base-content/80">
-                  {cls.title}
-                </li>
-              ))}
-            </ol>
+            <div className="max-h-48 overflow-y-auto border border-gray-200 rounded-lg p-3 ">
+              <ol className="list-decimal list-inside space-y-1">
+                {classes?.map((cls, idx) => (
+                  <li key={idx} className="text-base-content/80">
+                    {cls.title}{" "}
+                    {cls.duration && (
+                      <span className="text-sm text-gray-500">
+                        ({cls.duration})
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
 
           {/* Enroll Button */}
-          <div className="mt-6 flex justify-start">
-            <button className="btn bg-[#F16623] text-white text-lg rounded-xl px-6 py-2 hover:opacity-90 transition">
+          <div className="mt-4 flex justify-start">
+            <button
+              onClick={handleEnroll}
+              className="btn bg-[#F16623] text-white text-lg rounded-xl px-6 py-2 hover:opacity-90 transition"
+            >
               Enroll Now
             </button>
           </div>
 
           {/* Back Link */}
-          <div className="mt-4">
+          <div className="mt-2">
             <Link
               to="/courses"
               className="text-[#F16623] underline hover:text-[#c4551f]"
