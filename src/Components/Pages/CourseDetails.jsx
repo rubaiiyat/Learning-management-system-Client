@@ -23,7 +23,7 @@ const CourseDetails = () => {
             setEnrolled(true);
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => toast.error(err));
     }
   }, [user, _id]);
 

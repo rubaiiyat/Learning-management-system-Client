@@ -16,6 +16,7 @@ import AdminRegister from "../Admin/AdminAuth/AdminRegister";
 import AddCourse from "../Admin/AddCourse/AddCourse";
 import Courses from "../Pages/Courses";
 import CourseDetails from "../Pages/CourseDetails";
+import MyClass from "../Profile/MyClass";
 
 const Routes = createBrowserRouter([
   {
@@ -31,10 +32,10 @@ const Routes = createBrowserRouter([
         element: <div>Our Teachers</div>,
       },
       {
-        path: "/classes",
+        path: "/my-classes",
         element: (
           <PrivateRoutes>
-            <div>My Classes</div>
+            <MyClass></MyClass>
           </PrivateRoutes>
         ),
       },
