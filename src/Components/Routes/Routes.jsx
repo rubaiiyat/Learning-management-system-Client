@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, useParams } from "react-router";
 import App from "../../App";
 import Home from "../Pages/Home";
 import AboutEduport from "../Pages/AboutEduport";
@@ -18,6 +18,17 @@ import Courses from "../Pages/Courses";
 import CourseDetails from "../Pages/CourseDetails";
 import MyClass from "../Profile/MyClass";
 import LearnClass from "../Profile/LearnClass";
+import PrivateCourseRoute from "./PrivateRoutes/PrivateCourseRoute";
+
+const LearnClassWrapper = () => {
+  const { id } = useParams();
+
+  return (
+    <PrivateCourseRoute courseId={id}>
+      <LearnClass />
+    </PrivateCourseRoute>
+  );
+};
 
 const Routes = createBrowserRouter([
   {
@@ -44,7 +55,7 @@ const Routes = createBrowserRouter([
         path: "/learn-class/:id/:title",
         element: (
           <PrivateRoutes>
-            <LearnClass></LearnClass>
+            <LearnClassWrapper></LearnClassWrapper>
           </PrivateRoutes>
         ),
       },

@@ -9,7 +9,6 @@ const LearnClass = () => {
   const userEmail = user.email;
   const { id } = useParams();
   const [course, setCourse] = useState(null);
-  const [isEnrolled, setIsEnrolled] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
 
   useEffect(() => {
@@ -18,24 +17,16 @@ const LearnClass = () => {
       try {
         const res = await axios.get(`http://localhost:3000/course/${id}`);
         setCourse(res.data.result);
-
-        // Check if user is enrolled
-        const enrollRes = await axios.get(
-          `http://localhost:3000/check-enrollment?email=${userEmail}&courseId=${id}`
-        );
-
-        setIsEnrolled(enrollRes.data.enrolled);
       } catch (err) {
         console.error("Error fetching course or enrollment:", err);
         setCourse(null);
-        setIsEnrolled(false);
       }
     }
 
     fetchCourse();
   }, [id, userEmail]);
 
-  if (!course || !isEnrolled) {
+  if (!course) {
     return <ErrorPage></ErrorPage>;
   }
 
