@@ -40,6 +40,14 @@ const Routes = createBrowserRouter([
         ),
       },
       {
+        path: "/my-classes",
+        element: (
+          <PrivateRoutes>
+            <MyClass></MyClass>
+          </PrivateRoutes>
+        ),
+      },
+      {
         path: "/courses",
         element: <Courses></Courses>,
       },

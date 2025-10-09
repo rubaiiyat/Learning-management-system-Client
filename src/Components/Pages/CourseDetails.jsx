@@ -105,7 +105,7 @@ const CourseDetails = () => {
             {enrolled ? (
               <>
                 <Link
-                  to={`/myclass/${_id}/${title
+                  to={`/my-class/learn-class/${_id}/${title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}
                   className="btn bg-[#F16623] text-white text-lg rounded-xl px-6 py-2 hover:opacity-90 transition"
