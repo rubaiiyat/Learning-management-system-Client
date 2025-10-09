@@ -54,7 +54,7 @@ const MyClass = () => {
                 .replace(/\s+/g, "-")}`}
               className="btn bg-[#F16623] text-white rounded-lg w-full"
             >
-              Go to Class
+              Start Learning
             </Link>
           </div>
         ))}
