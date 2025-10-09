@@ -17,6 +17,7 @@ import AddCourse from "../Admin/AddCourse/AddCourse";
 import Courses from "../Pages/Courses";
 import CourseDetails from "../Pages/CourseDetails";
 import MyClass from "../Profile/MyClass";
+import LearnClass from "../Profile/LearnClass";
 
 const Routes = createBrowserRouter([
   {
@@ -40,10 +41,10 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: "/my-classes",
+        path: "/learn-class/:id/:title",
         element: (
           <PrivateRoutes>
-            <MyClass></MyClass>
+            <LearnClass></LearnClass>
           </PrivateRoutes>
         ),
       },

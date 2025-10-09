@@ -49,7 +49,7 @@ const MyClass = () => {
             </h2>
             <p className=" mb-3">{course.description?.slice(0, 80)}...</p>
             <Link
-              to={`/my-class//learn-class/${course._id}/${course.title
+              to={`/learn-class/${course._id}/${course.title
                 .toLowerCase()
                 .replace(/\s+/g, "-")}`}
               className="btn bg-[#F16623] text-white rounded-lg w-full"
