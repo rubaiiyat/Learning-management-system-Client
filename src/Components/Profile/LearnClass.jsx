@@ -1,35 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import ErrorPage from "../Pages/ErrorPage";
+import { AuthContext } from "../Context/AuthProvider";
 
 const LearnClass = () => {
+  const { user } = useContext(AuthContext);
+  const userEmail = user.email;
   const { id } = useParams();
   const [course, setCourse] = useState(null);
+  const [isEnrolled, setIsEnrolled] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/course/${id}`)
-      .then((res) => {
+    if (!userEmail) return;
+    async function fetchCourse() {
+      try {
+        const res = await axios.get(`http://localhost:3000/course/${id}`);
         setCourse(res.data.result);
-      })
-      .catch((err) => {
-        console.error("Error fetching course:", err);
-      });
-  }, [id]);
 
-  if (!course) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-200 text-base-content flex justify-center items-center">
-        <div className="text-center p-8">
-          <div className="text-6xl mb-4">😢</div>
-          <h2 className="text-2xl font-bold mb-2">No course found</h2>
-          <p className="text-base-content/70 mb-6">
-            We couldn't find the course you're looking for
-          </p>
-        </div>
-      </div>
-    );
+        // Check if user is enrolled
+        const enrollRes = await axios.get(
+          `http://localhost:3000/check-enrollment?email=${userEmail}&courseId=${id}`
+        );
+
+        setIsEnrolled(enrollRes.data.enrolled);
+      } catch (err) {
+        console.error("Error fetching course or enrollment:", err);
+        setCourse(null);
+        setIsEnrolled(false);
+      }
+    }
+
+    fetchCourse();
+  }, [id, userEmail]);
+
+  if (!course || !isEnrolled) {
+    return <ErrorPage></ErrorPage>;
   }
 
   return (
