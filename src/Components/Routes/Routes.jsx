@@ -18,17 +18,8 @@ import Courses from "../Pages/Courses";
 import CourseDetails from "../Pages/CourseDetails";
 import MyClass from "../Profile/MyClass";
 import LearnClass from "../Profile/LearnClass";
-import PrivateCourseRoute from "./PrivateRoutes/PrivateCourseRoute";
-
-const LearnClassWrapper = () => {
-  const { id } = useParams();
-
-  return (
-    <PrivateCourseRoute courseId={id}>
-      <LearnClass />
-    </PrivateCourseRoute>
-  );
-};
+import SubmitAssignment from "../Profile/SubmitAssignment";
+import Wrapper from "./PrivateRoutes/Wrapper";
 
 const Routes = createBrowserRouter([
   {
@@ -55,7 +46,19 @@ const Routes = createBrowserRouter([
         path: "/learn-class/:id/:title",
         element: (
           <PrivateRoutes>
-            <LearnClassWrapper></LearnClassWrapper>
+            <Wrapper>
+              <LearnClass></LearnClass>
+            </Wrapper>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/submit-assignment/:id/:title",
+        element: (
+          <PrivateRoutes>
+            <Wrapper>
+              <SubmitAssignment></SubmitAssignment>
+            </Wrapper>
           </PrivateRoutes>
         ),
       },

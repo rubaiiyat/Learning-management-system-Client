@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import ErrorPage from "../Pages/ErrorPage";
 import { AuthContext } from "../Context/AuthProvider";
 
@@ -53,7 +53,7 @@ const LearnClass = () => {
 
             {/* ===== CLASS LIST ===== */}
             <div className="space-y-3">
-              {course.classes && course.classes.length > 0 ? (
+              {course?.classes && course.classes.length > 0 ? (
                 course.classes.map((cls, index) => (
                   <div
                     key={index}
@@ -106,6 +106,20 @@ const LearnClass = () => {
                   </p>
                 </div>
               )}
+
+              {/* Submit Assignment Button */}
+
+              <div className="pt-4">
+                <button className="w-full py-3 bg-[#F16623] text-white font-semibold rounded-lg hover:bg-[#d6551f] transition-colors">
+                  <Link
+                    to={`/submit-assignment/${course._id}/${course.title
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`}
+                  >
+                    Submit Assignment
+                  </Link>
+                </button>
+              </div>
             </div>
           </div>
         </div>
