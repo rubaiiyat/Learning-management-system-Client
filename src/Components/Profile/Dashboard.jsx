@@ -3,6 +3,7 @@ import { Edit3, BookOpen, Award } from "lucide-react";
 import { AuthContext } from "../Context/AuthProvider";
 import axios from "axios";
 import { Link } from "react-router";
+import UserAssignmentMarks from "./UserAssignmentMarks";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -57,42 +58,7 @@ const Dashboard = () => {
 
         {/* Middle: Assignments List */}
         <div className="lg:col-span-2 bg-base-200 rounded-2xl shadow-md p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-base-content flex items-center gap-2">
-              <BookOpen className="text-[#F16623]" /> Assignment Marks
-            </h2>
-            <Award className="text-[#F16623]" />
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="table w-full">
-              <thead>
-                <tr className="bg-[#F16623] text-white">
-                  <th className="p-3 text-left rounded-tl-lg">#</th>
-                  <th className="p-3 text-left">Assignment</th>
-                  <th className="p-3 text-left rounded-tr-lg">Marks</th>
-                </tr>
-              </thead>
-              {/* <tbody>
-                {assignments.map((a) => (
-                  <tr
-                    key={a.id}
-                    className="border-b border-base-300 hover:bg-base-100 transition text-base-content"
-                  >
-                    <td className="p-3">{a.id}</td>
-                    <td className="p-3">{a.title}</td>
-                    <td
-                      className={`p-3 font-semibold ${
-                        a.mark >= 80 ? "text-green-500" : "text-yellow-500"
-                      }`}
-                    >
-                      {a.mark}%
-                    </td>
-                  </tr>
-                ))}
-              </tbody> */}
-            </table>
-          </div>
+          <UserAssignmentMarks></UserAssignmentMarks>
         </div>
       </div>
     </div>
