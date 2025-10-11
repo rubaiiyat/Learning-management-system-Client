@@ -28,7 +28,11 @@ const AdminRoute = ({ children }) => {
   }, [user]);
 
   if (loading || checking) {
-    return <p>Loading...</p>;
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
   }
 
   if (!user || !isAdmin) {
