@@ -64,12 +64,12 @@ const AdminDashboard = () => {
           >
             <BookOpen size={18} /> Add Course
           </Link>
-          <a
-            href="#"
+          <Link
+            to={"/assignment-marks"}
             className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
           >
             <ClipboardList size={18} /> Assignment Marks
-          </a>
+          </Link>
           <a
             href="#"
             className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"

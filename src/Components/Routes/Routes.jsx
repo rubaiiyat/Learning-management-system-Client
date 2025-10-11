@@ -21,6 +21,7 @@ import LearnClass from "../Profile/LearnClass";
 import SubmitAssignment from "../Profile/SubmitAssignment";
 import Wrapper from "./PrivateRoutes/Wrapper";
 import AdminRoute from "./PrivateRoutes/AdminRoute";
+import AssignmentMarks from "../Admin/AssignmentMarks/AssignmentMarks";
 
 const Routes = createBrowserRouter([
   {
@@ -146,6 +147,10 @@ const Routes = createBrowserRouter([
       {
         path: "/admin/add-course",
         element: <AddCourse></AddCourse>,
+      },
+      {
+        path: "/assignment-marks",
+        element: <AssignmentMarks></AssignmentMarks>,
       },
     ],
   },
