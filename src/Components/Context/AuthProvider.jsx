@@ -75,6 +75,7 @@ const AuthProvider = ({ children }) => {
         email: user.email,
         image: user.photoURL || "",
         gender: "",
+        role: "Student",
       });
       toast.success("Login Successful!");
     } catch (error) {

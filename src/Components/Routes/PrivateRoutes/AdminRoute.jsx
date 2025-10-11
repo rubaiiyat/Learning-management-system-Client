@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Navigate } from "react-router";
+import ErrorPage from "../../Pages/ErrorPage";
 
 const AdminRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const AdminRoute = ({ children }) => {
   }
 
   if (!user || !isAdmin) {
-    return <Navigate to="/" replace />;
+    return <ErrorPage></ErrorPage>;
   }
   return children;
 };
