@@ -20,6 +20,7 @@ import MyClass from "../Profile/MyClass";
 import LearnClass from "../Profile/LearnClass";
 import SubmitAssignment from "../Profile/SubmitAssignment";
 import Wrapper from "./PrivateRoutes/Wrapper";
+import AdminRoute from "./PrivateRoutes/AdminRoute";
 
 const Routes = createBrowserRouter([
   {
@@ -132,7 +133,11 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/admin/dashboard",
-        element: <AdminDashboard></AdminDashboard>,
+        element: (
+          <AdminRoute>
+            <AdminDashboard></AdminDashboard>
+          </AdminRoute>
+        ),
       },
       {
         path: "/admin/register",
