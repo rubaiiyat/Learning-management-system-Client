@@ -2,8 +2,26 @@ import { CornerRightDown, Menu, Moon, Sun } from "lucide-react";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthProvider";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
+  const [role, setRole] = useState(null);
+  useEffect(() => {
+    if (user?.email) {
+      axios
+        .get(`http://localhost:3000/users?email=${user.email}`)
+        .then((res) => {
+          const userRole = res.data.result?.[0]?.role;
+          setRole(userRole);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      setRole(null);
+    }
+  }, [user]);
+
   const navLinks = (
     <>
       <li>
@@ -82,18 +100,20 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li>
-        <NavLink
-          to="/admin/dashboard"
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#F16623] font-bold underline text-base"
-              : "hover:underline text-base"
-          }
-        >
-          Admin Dashboard
-        </NavLink>
-      </li>
+      {role === "Admin" && (
+        <li>
+          <NavLink
+            to="/admin/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#F16623] font-bold underline text-base"
+                : "hover:underline text-base"
+            }
+          >
+            Admin Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
