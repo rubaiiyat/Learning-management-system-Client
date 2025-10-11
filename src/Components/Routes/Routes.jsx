@@ -61,6 +61,11 @@ const Routes = createBrowserRouter([
             </Wrapper>
           </PrivateRoutes>
         ),
+        loader: async ({ params }) => {
+          const res = await fetch(`http://localhost:3000/course/${params.id}`);
+          const result = await res.json();
+          return result;
+        },
       },
       {
         path: "/courses",
