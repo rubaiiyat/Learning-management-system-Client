@@ -64,9 +64,9 @@ const UpdateProfile = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center min-h-screen ">
-        <div className="bg-base-200 p-8 rounded-2xl shadow-xl w-96">
-          <h2 className="text-2xl font-semibold text-center mb-6">
+      <div className="flex justify-center items-center mt-10 px-4 md:px-0">
+        <div className="bg-base-200 p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md md:max-w-lg">
+          <h2 className="text-xl md:text-2xl font-semibold text-center mb-6">
             Update Profile
           </h2>
 
@@ -105,13 +105,14 @@ const UpdateProfile = () => {
 
             <button
               type="submit"
-              className="btn bg-[#F16623] text-white hover:bg-[#f97238]"
+              className="btn bg-[#F16623] text-white hover:bg-[#f97238] w-full md:w-auto"
             >
               Save Changes
             </button>
+
             <Link
               to="/user/dashboard"
-              className="btn bg-[#F16623] text-white hover:bg-[#f97238]"
+              className="btn bg-[#F16623] text-white hover:bg-[#f97238] w-full md:w-auto flex items-center justify-center gap-2"
             >
               <ArrowBigLeft /> Back to dashboard
             </Link>
