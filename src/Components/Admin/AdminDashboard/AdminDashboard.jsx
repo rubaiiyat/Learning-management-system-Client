@@ -9,6 +9,9 @@ import {
   X,
 } from "lucide-react";
 import { Link } from "react-router";
+import TotalCourses from "../Pages/TotalCourses";
+import RegisterdStudents from "../Pages/RegisterdStudents";
+import AssignmentGrades from "../Pages/AssignmentGrades";
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -122,29 +125,11 @@ const AdminDashboard = () => {
 
         {/* Dashboard Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          <div className="bg-base-100 shadow-lg p-4 md:p-6 rounded-xl md:rounded-2xl border border-base-300 hover:shadow-xl transition">
-            <BookOpen className="text-[#F16623]" size={24} />
-            <h3 className="font-semibold mt-2 md:mt-3 text-base md:text-lg">
-              Total Courses
-            </h3>
-            <p className="text-xl md:text-2xl font-bold mt-1 md:mt-2">12</p>
-          </div>
+          <TotalCourses></TotalCourses>
 
-          <div className="bg-base-100 shadow-lg p-4 md:p-6 rounded-xl md:rounded-2xl border border-base-300 hover:shadow-xl transition">
-            <Users className="text-[#F16623]" size={24} />
-            <h3 className="font-semibold mt-2 md:mt-3 text-base md:text-lg">
-              Registered Students
-            </h3>
-            <p className="text-xl md:text-2xl font-bold mt-1 md:mt-2">240</p>
-          </div>
+          <RegisterdStudents></RegisterdStudents>
 
-          <div className="bg-base-100 shadow-lg p-4 md:p-6 rounded-xl md:rounded-2xl border border-base-300 hover:shadow-xl transition">
-            <ClipboardList className="text-[#F16623]" size={24} />
-            <h3 className="font-semibold mt-2 md:mt-3 text-base md:text-lg">
-              Assignments Graded
-            </h3>
-            <p className="text-xl md:text-2xl font-bold mt-1 md:mt-2">180</p>
-          </div>
+          <AssignmentGrades></AssignmentGrades>
         </div>
 
         {/* Bottom Section */}
