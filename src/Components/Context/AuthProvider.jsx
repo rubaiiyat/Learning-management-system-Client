@@ -62,6 +62,14 @@ const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
+      const existing = await axios.get(
+        `http://localhost:3000/users?email=${user.email}`
+      );
+
+      if (existing.data.result && existing.data.result.length > 0) {
+        return;
+      }
+
       await axios.post("http://localhost:3000/users", {
         fullName: user.displayName || "",
         email: user.email,
