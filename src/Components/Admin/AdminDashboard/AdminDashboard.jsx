@@ -8,20 +8,18 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import TotalCourses from "../Pages/TotalCourses";
 import RegisterdStudents from "../Pages/RegisterdStudents";
 import AssignmentGrades from "../Pages/AssignmentGrades";
 import AdminList from "../AdminList/AdminList";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const AdminDashboard = () => {
+  const { userLogout } = useContext(AuthContext);
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const admin = {
-    name: "Abir Rubaiyat",
-    role: "Super Admin",
-    image:
-      "https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE=",
-  };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -71,24 +69,12 @@ const AdminDashboard = () => {
           >
             <ClipboardList size={18} /> Assignment Marks
           </Link>
-          <a
-            href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
-          >
-            <Users size={18} /> Manage Students
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] transition text-sm md:text-base"
-          >
-            <Settings size={18} /> Settings
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623]0 transition text-sm md:text-base"
+          <button
+            onClick={userLogout}
+            className="flex items-center gap-3 p-2 rounded hover:bg-[#F16623]/10 hover:text-[#F16623] hover:cursor-pointer transition text-sm md:text-base"
           >
             <Settings size={18} /> Logout
-          </a>
+          </button>
         </nav>
       </aside>
 
@@ -106,21 +92,6 @@ const AdminDashboard = () => {
             <h1 className="text-xl md:text-2xl font-bold text-base-content">
               Dashboard Overview
             </h1>
-          </div>
-          <div className="flex items-center gap-2 md:gap-3">
-            <img
-              src={admin.image}
-              alt="Admin"
-              className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-base-300"
-            />
-            <div className="hidden sm:block">
-              <h3 className="font-semibold text-sm md:text-base">
-                {admin.name}
-              </h3>
-              <p className="text-xs md:text-sm text-base-content/60">
-                {admin.role}
-              </p>
-            </div>
           </div>
         </div>
 

@@ -81,18 +81,7 @@ const Navbar = () => {
           About
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/admin/login"
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#F16623] font-bold underline text-base"
-              : "hover:underline text-base"
-          }
-        >
-          Admin
-        </NavLink>
-      </li>
+
       <li>
         <NavLink
           to="/admin/dashboard"

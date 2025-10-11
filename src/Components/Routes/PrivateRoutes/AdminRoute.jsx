@@ -36,7 +36,7 @@ const AdminRoute = ({ children }) => {
   }
 
   if (!user || !isAdmin) {
-    return <ErrorPage></ErrorPage>;
+    return <Navigate to="/" replace />;
   }
   return children;
 };

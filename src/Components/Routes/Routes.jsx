@@ -10,7 +10,6 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import PublicRoute from "./PrivateRoutes/PublicRoute";
 import Dashboard from "../Profile/Dashboard";
 import UpdateProfile from "../Profile/UpdateProfile";
-import AdminLogin from "../Admin/AdminAuth/AdminLogin";
 import AdminDashboard from "../Admin/AdminDashboard/AdminDashboard";
 import AdminRegister from "../Admin/AdminAuth/AdminRegister";
 import AddCourse from "../Admin/AddCourse/AddCourse";
@@ -128,10 +127,7 @@ const Routes = createBrowserRouter([
       },
 
       // Admin Part
-      {
-        path: "/admin/login",
-        element: <AdminLogin></AdminLogin>,
-      },
+
       {
         path: "/admin/dashboard",
         element: (
@@ -142,15 +138,28 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/admin/register",
-        element: <AdminRegister></AdminRegister>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AdminRegister></AdminRegister>
+          </AdminRoute>
+        ),
       },
       {
         path: "/admin/add-course",
-        element: <AddCourse></AddCourse>,
+        element: (
+          <AdminRoute>
+            <AddCourse></AddCourse>
+          </AdminRoute>
+        ),
       },
       {
         path: "/assignment-marks",
-        element: <AssignmentMarks></AssignmentMarks>,
+        element: (
+          <AdminRoute>
+            <AssignmentMarks></AssignmentMarks>
+          </AdminRoute>
+        ),
       },
     ],
   },
