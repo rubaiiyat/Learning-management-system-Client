@@ -40,6 +40,25 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  // Create User For Admin
+  const createAdmin = async (email, password) => {
+    setLoading(true);
+    setOwnError(null);
+    try {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      return result;
+    } catch (error) {
+      toast.error("This email is already used.");
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Login User
   const loginUser = async (email, password) => {
@@ -114,6 +133,7 @@ const AuthProvider = ({ children }) => {
     OwnError,
     setOwnError,
     createUser,
+    createAdmin,
     loginUser,
     loginWithGoogle,
     userLogout,

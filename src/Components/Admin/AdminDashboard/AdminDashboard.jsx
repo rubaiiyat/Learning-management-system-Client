@@ -12,6 +12,7 @@ import { Link } from "react-router";
 import TotalCourses from "../Pages/TotalCourses";
 import RegisterdStudents from "../Pages/RegisterdStudents";
 import AssignmentGrades from "../Pages/AssignmentGrades";
+import AdminList from "../AdminList/AdminList";
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -134,29 +135,7 @@ const AdminDashboard = () => {
 
         {/* Bottom Section */}
         <div className="mt-6 md:mt-8 lg:mt-10">
-          <h2 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-[#F16623]">
-            Admin Team
-          </h2>
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[1, 2, 3, 4].map((_, i) => (
-              <div
-                key={i}
-                className="bg-base-100 border border-base-300 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md flex flex-col items-center text-center"
-              >
-                <img
-                  src={`https://i.pravatar.cc/100?img=${i + 1}`}
-                  alt="Admin"
-                  className="w-16 h-16 md:w-20 md:h-20 rounded-full mb-2 md:mb-3"
-                />
-                <h3 className="font-semibold text-sm md:text-base">
-                  Admin {i + 1}
-                </h3>
-                <p className="text-xs md:text-sm text-base-content/70">
-                  Role: Instructor
-                </p>
-              </div>
-            ))}
-          </div>
+          <AdminList></AdminList>
         </div>
       </main>
     </div>

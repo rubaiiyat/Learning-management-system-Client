@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const AdminRegister = () => {
-  const { createUser, loading } = useContext(AuthContext);
+  const { createAdmin, loading } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const {
@@ -26,7 +26,7 @@ const AdminRegister = () => {
         return toast.error("Password must contain at least 6 characters");
       }
 
-      const userCreated = await createUser(data.email, data.password);
+      const userCreated = await createAdmin(data.email, data.password);
       if (!userCreated) return;
       const response = await axios.post("http://localhost:3000/users", data);
       toast.success("New admin created successfully!");
