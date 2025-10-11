@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import TopCountries from "./TopCountries";
 import AboutEduport from "./AboutEduport";
 import Join from "./Join";
+import Offer from "./Offer";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Banner></Banner>
       <TopCountries></TopCountries>
       <AboutEduport></AboutEduport>
+      <Offer></Offer>
       <Join></Join>
     </div>
   );
