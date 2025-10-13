@@ -14,7 +14,7 @@ const PrivateCourseRoute = ({ courseId, children }) => {
       try {
         setChecking(true);
         const res = await axios.get(
-          `http://localhost:3000/check-enrollment?email=${userEmail}&courseId=${courseId}`
+          `https://lms-server-henna.vercel.app/check-enrollment?email=${userEmail}&courseId=${courseId}`
         );
         setIsEnrolled(res.data.enrolled);
       } catch (error) {

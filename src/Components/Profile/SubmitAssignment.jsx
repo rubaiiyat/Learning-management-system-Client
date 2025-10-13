@@ -17,7 +17,9 @@ const SubmitAssignment = () => {
   useEffect(() => {
     const checkSubmission = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/submit-assignment");
+        const res = await axios.get(
+          "https://lms-server-henna.vercel.app/submit-assignment"
+        );
         const existing = res.data.result.find(
           (item) =>
             item.courseId === data.result._id && item.userEmail === user.email
@@ -65,7 +67,7 @@ const SubmitAssignment = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:3000/submit-assignment",
+        "https://lms-server-henna.vercel.app/submit-assignment",
         submissionData
       );
 

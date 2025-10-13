@@ -60,7 +60,9 @@ const Routes = createBrowserRouter([
           </Wrapper>
         ),
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:3000/course/${params.id}`);
+          const res = await fetch(
+            `https://lms-server-henna.vercel.app/course/${params.id}`
+          );
           const result = await res.json();
           return result;
         },
@@ -73,7 +75,9 @@ const Routes = createBrowserRouter([
         path: "/course/:id/:title",
         element: <CourseDetails />,
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:3000/course/${params.id}`);
+          const res = await fetch(
+            `https://lms-server-henna.vercel.app/course/${params.id}`
+          );
           const result = await res.json();
           return result;
         },

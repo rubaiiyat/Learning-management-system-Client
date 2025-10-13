@@ -17,7 +17,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/users?email=${user.email}`)
+        .get(`https://lms-server-henna.vercel.app/users?email=${user.email}`)
         .then((res) => {
           const userData = res.data.result[0];
           setFormData({
@@ -46,7 +46,10 @@ const UpdateProfile = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`http://localhost:3000/user/update/${user.email}`, formData)
+          .put(
+            `https://lms-server-henna.vercel.app/user/update/${user.email}`,
+            formData
+          )
           .then((res) => {
             Swal.fire("Saved!", "", "success");
             navigate("/user/dashboard");

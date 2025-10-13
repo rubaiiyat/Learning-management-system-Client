@@ -15,7 +15,9 @@ const AssignmentMarks = () => {
 
   const fetchAssignments = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/submit-assignment");
+      const res = await axios.get(
+        "https://lms-server-henna.vercel.app/submit-assignment"
+      );
       const pendingAssignments = res.data.result.filter(
         (a) => a.status === "Pending" || a.mark == 0
       );
@@ -44,7 +46,7 @@ const AssignmentMarks = () => {
     }
     try {
       await axios.put(
-        `http://localhost:3000/set-mark/assignment/${selected._id}`,
+        `https://lms-server-henna.vercel.app/set-mark/assignment/${selected._id}`,
         { mark: Number(mark), status }
       );
       setAssignments(assignments.filter((a) => a._id !== selected._id));

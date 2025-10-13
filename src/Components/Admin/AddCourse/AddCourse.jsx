@@ -23,7 +23,10 @@ const AddCourse = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:3000/courses", data);
+      const response = await axios.post(
+        "https://lms-server-henna.vercel.app/courses",
+        data
+      );
 
       if (response.status === 200) {
         toast.success(`Course "${data.title}" added successfully!`);

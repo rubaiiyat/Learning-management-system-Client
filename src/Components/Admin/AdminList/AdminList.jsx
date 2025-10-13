@@ -6,7 +6,7 @@ const AdminList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://lms-server-henna.vercel.app/users")
       .then((res) => {
         const adminUsers = res.data.result.filter(
           (user) => user.role === "Admin"

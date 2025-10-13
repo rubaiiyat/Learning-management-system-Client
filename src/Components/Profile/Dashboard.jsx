@@ -12,11 +12,13 @@ const Dashboard = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/users?email=${user.email}`)
+        .get(`https://lms-server-henna.vercel.app/users?email=${user.email}`)
         .then((res) => {
           setUserData(res.data.result[0]);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [user]);
   return (

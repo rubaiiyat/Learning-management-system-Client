@@ -7,7 +7,7 @@ const TotalCourses = () => {
 
   useEffect(() => {
     const course = axios
-      .get("http://localhost:3000/courses")
+      .get("https://lms-server-henna.vercel.app/courses")
       .then((res) => setTotalCourse(res.data.course));
   }, []);
   return (

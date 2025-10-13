@@ -11,7 +11,9 @@ const UserAssignmentMarks = () => {
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/submit-assignment");
+        const res = await axios.get(
+          "https://lms-server-henna.vercel.app/submit-assignment"
+        );
 
         const userAssignments = res.data.result.filter(
           (a) => a.userEmail === user.email && a.status === "Complete"

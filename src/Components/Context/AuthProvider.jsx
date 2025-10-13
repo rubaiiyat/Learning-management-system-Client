@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
 
       // Get JWT from backend
       const { data } = await axios.post(
-        "http://localhost:3000/jwt",
+        "https://lms-server-henna.vercel.app/jwt",
         { email: result.user.email },
         { withCredentials: true }
       );
@@ -77,12 +77,12 @@ const AuthProvider = ({ children }) => {
 
       // Check if user exists in DB
       const existing = await axios.get(
-        `http://localhost:3000/users?email=${userInfo.email}`
+        `https://lms-server-henna.vercel.app/users?email=${userInfo.email}`
       );
 
       if (!existing.data.result || existing.data.result.length === 0) {
         // create new user in DB
-        await axios.post("http://localhost:3000/users", {
+        await axios.post("https://lms-server-henna.vercel.app/users", {
           fullName: userInfo.displayName || "",
           email: userInfo.email,
           image: userInfo.photoURL || "",
@@ -93,7 +93,7 @@ const AuthProvider = ({ children }) => {
 
       // Get JWT
       const { data } = await axios.post(
-        "http://localhost:3000/jwt",
+        "https://lms-server-henna.vercel.app/jwt",
         { email: userInfo.email },
         { withCredentials: true }
       );
@@ -113,7 +113,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:3000/logout",
+        "https://lms-server-henna.vercel.app/logout",
         {},
         { withCredentials: true }
       );
@@ -141,9 +141,12 @@ const AuthProvider = ({ children }) => {
     const verifyToken = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get("http://localhost:3000/verify-token", {
-          withCredentials: true,
-        });
+        const { data } = await axios.get(
+          "https://lms-server-henna.vercel.app/verify-token",
+          {
+            withCredentials: true,
+          }
+        );
 
         if (data?.email && data?.role) {
           setUser({ email: data.email, role: data.role });

@@ -11,7 +11,9 @@ const RegisterdStudents = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/users");
+        const res = await axios.get(
+          "https://lms-server-henna.vercel.app/users"
+        );
         const users = res.data.result || [];
 
         setRegistered(users.length);

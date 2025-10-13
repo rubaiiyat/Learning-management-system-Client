@@ -17,7 +17,7 @@ const Navbar = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/users?email=${user.email}`)
+        .get(`https://lms-server-henna.vercel.app/users?email=${user.email}`)
         .then((res) => {
           const userRole = res.data.result?.[0]?.role;
           setRole(userRole);

@@ -13,7 +13,9 @@ const MyClass = () => {
     if (user) {
       setLoading(true);
       axios
-        .get(`http://localhost:3000/myclasses?email=${user.email}`)
+        .get(
+          `https://lms-server-henna.vercel.app/myclasses?email=${user.email}`
+        )
         .then((res) => {
           setCourses(res.data.courses || []);
         })

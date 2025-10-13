@@ -21,7 +21,9 @@ const CourseDetails = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:3000/myclasses?email=${user.email}`)
+        .get(
+          `https://lms-server-henna.vercel.app/myclasses?email=${user.email}`
+        )
         .then((res) => {
           const enrolledCourse = res.data.courses.map((c) => c._id);
           if (enrolledCourse.includes(_id.toString())) {
@@ -49,10 +51,13 @@ const CourseDetails = () => {
     if (inputCode === ENROLL_CODE) {
       try {
         const email = user.email;
-        const res = await axios.post("http://localhost:3000/enroll", {
-          email,
-          courseId: _id,
-        });
+        const res = await axios.post(
+          "https://lms-server-henna.vercel.app/enroll",
+          {
+            email,
+            courseId: _id,
+          }
+        );
         toast.success(res.data.message || "Enrolled Successfully!");
         setEnrolled(true);
         setShowModal(false);

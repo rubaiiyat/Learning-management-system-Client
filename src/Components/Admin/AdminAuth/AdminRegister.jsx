@@ -28,7 +28,10 @@ const AdminRegister = () => {
 
       const userCreated = await createAdmin(data.email, data.password);
       if (!userCreated) return;
-      const response = await axios.post("http://localhost:3000/users", data);
+      const response = await axios.post(
+        "https://lms-server-henna.vercel.app/users",
+        data
+      );
       toast.success("New admin created successfully!");
       navigate("/admin/dashboard");
       reset();

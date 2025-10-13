@@ -15,7 +15,9 @@ const LearnClass = () => {
     if (!userEmail) return;
     async function fetchCourse() {
       try {
-        const res = await axios.get(`http://localhost:3000/course/${id}`);
+        const res = await axios.get(
+          `https://lms-server-henna.vercel.app/course/${id}`
+        );
         setCourse(res.data.result);
       } catch (err) {
         console.error("Error fetching course or enrollment:", err);

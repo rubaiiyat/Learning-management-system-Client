@@ -10,7 +10,9 @@ const AssignmentGrades = () => {
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/submit-assignment");
+        const res = await axios.get(
+          "https://lms-server-henna.vercel.app/submit-assignment"
+        );
         const assignments = res.data.result || [];
         const graded = assignments.filter(
           (assignment) => assignment.mark && assignment.mark > 0

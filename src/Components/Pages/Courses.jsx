@@ -20,7 +20,7 @@ const Courses = () => {
   ];
 
   useEffect(() => {
-    axios.get("http://localhost:3000/courses").then((res) => {
+    axios.get("https://lms-server-henna.vercel.app/courses").then((res) => {
       const allCourses = res.data.course;
       setCourses(allCourses);
       setFilteredCourses(allCourses);
