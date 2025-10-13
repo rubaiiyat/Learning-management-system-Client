@@ -1,16 +1,60 @@
-# React + Vite
+Eduport
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eduport is a Learning Management System (LMS) project designed for both students and administrators. It allows users to enroll in courses, access classes, submit assignments, and manage profiles. Admins can manage courses, view student progress, and assign marks.
 
-Currently, two official plugins are available:
+Features
+User Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Register, Login & Logout – Users can register and login using their email and password.
 
-## React Compiler
+Google Login – Users can login using their Google account.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Dark Mode / Light Mode – Users can toggle between dark and light themes.
 
-## Expanding the ESLint configuration
+Course Enrollment – Authenticated users can enroll in courses.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Class Access – Users can access classes only after enrolling in the course.
+
+Assignment Submission – Users can submit assignments for enrolled courses.
+
+Profile Management – Users can update their personal information.
+
+Course Filtering – Users can filter courses by category.
+
+View Marks – Users can see marks assigned by admin.
+
+User Login Info:
+
+Email: damiano@gmail.com
+
+Password: aaaaaa
+
+Admin Features
+
+Admin Login – Access admin dashboard.
+
+Create Other Admins – Admins can create additional admin accounts.
+
+Add Courses – Admins can add new courses.
+
+Assign Marks – Admins can assign marks to student assignments.
+
+Dashboard Insights – View total courses, enrolled students, and marks assigned.
+
+Admin Login Info:
+
+Email: emily@gmail.com
+
+Password: aaaaaa
+
+Technologies Used
+
+Frontend: React, Tailwind CSS, Swiper JS, React Lucide Icons, React Hot Toast, SweetAlert
+
+Backend: Express.js, Axios
+
+Database: MongoDB
+
+Authentication: Firebase
+
+Deployment: Vercel, Firebase
