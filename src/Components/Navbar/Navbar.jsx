@@ -1,6 +1,6 @@
 import { CornerRightDown, Menu, Moon, Sun } from "lucide-react";
 import { useContext } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthProvider";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -8,6 +8,12 @@ import axios from "axios";
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const [role, setRole] = useState(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    userLogout();
+    navigate("/");
+  };
   useEffect(() => {
     if (user?.email) {
       axios
@@ -157,9 +163,8 @@ const Navbar = () => {
               role="button"
               className="btn m-1 bg-[#F16623] text-white"
             >
-              {user ? (
+              {user && user.email ? (
                 <>
-                  {" "}
                   <span className="font-semibold">
                     {user.email.split("@")[0].charAt(0).toUpperCase() +
                       user.email.split("@")[0].slice(1)}
@@ -187,7 +192,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <button
-                      onClick={userLogout}
+                      onClick={handleLogout}
                       className="hover:text-[#F16623]"
                     >
                       Logout

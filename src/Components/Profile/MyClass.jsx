@@ -11,16 +11,22 @@ const MyClass = () => {
 
   useEffect(() => {
     if (user) {
+      setLoading(true);
       axios
         .get(`http://localhost:3000/myclasses?email=${user.email}`)
         .then((res) => {
           setCourses(res.data.courses || []);
         })
         .catch((err) => {
-          toast.error(err);
+          toast.error(err.message || "Failed to fetch courses");
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   }, [user]);
+
+  if (loading) return <p></p>;
 
   if (courses.length === 0) {
     return (
