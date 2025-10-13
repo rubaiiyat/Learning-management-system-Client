@@ -21,6 +21,7 @@ import SubmitAssignment from "../Profile/SubmitAssignment";
 import Wrapper from "./PrivateRoutes/Wrapper";
 import AdminRoute from "./PrivateRoutes/AdminRoute";
 import AssignmentMarks from "../Admin/AssignmentMarks/AssignmentMarks";
+import Teachers from "../Pages/Techers";
 
 const Routes = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/teachers",
-        element: <div>Our Teachers</div>,
+        element: <Teachers></Teachers>,
       },
       {
         path: "/my-classes",
