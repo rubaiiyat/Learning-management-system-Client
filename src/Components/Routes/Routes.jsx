@@ -47,21 +47,17 @@ const Routes = createBrowserRouter([
       {
         path: "/learn-class/:id/:title",
         element: (
-          <PrivateRoutes>
-            <Wrapper>
-              <LearnClass></LearnClass>
-            </Wrapper>
-          </PrivateRoutes>
+          <Wrapper>
+            <LearnClass></LearnClass>
+          </Wrapper>
         ),
       },
       {
         path: "/submit-assignment/:id/:title",
         element: (
-          <PrivateRoutes>
-            <Wrapper>
-              <SubmitAssignment></SubmitAssignment>
-            </Wrapper>
-          </PrivateRoutes>
+          <Wrapper>
+            <SubmitAssignment></SubmitAssignment>
+          </Wrapper>
         ),
         loader: async ({ params }) => {
           const res = await fetch(`http://localhost:3000/course/${params.id}`);
