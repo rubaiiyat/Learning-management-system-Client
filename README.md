@@ -1,60 +1,65 @@
-Eduport
+# Eduport 🎓
 
-Eduport is a Learning Management System (LMS) project designed for both students and administrators. It allows users to enroll in courses, access classes, submit assignments, and manage profiles. Admins can manage courses, view student progress, and assign marks.
+Eduport is a Learning Management System (LMS) built for students and administrators.
+It allows users to enroll in courses, access classes, submit assignments, and manage profiles.
+Admins can manage courses, view student progress, and assign marks.
 
-Features
-User Features
+# 🚀 User Features
 
-Register, Login & Logout – Users can register and login using their email and password.
+## All features for regular users:
 
-Google Login – Users can login using their Google account.
+**✅ Register / Login / Logout** – Users can create an account, login, and logout.
 
-Dark Mode / Light Mode – Users can toggle between dark and light themes.
+**✅ Google Login** – Login using Google account.
 
-Course Enrollment – Authenticated users can enroll in courses.
+**🌗 Dark Mode / Light Mode** – Toggle between dark and light themes.
 
-Class Access – Users can access classes only after enrolling in the course.
+**📚 Course Enrollment** – Authenticated users can enroll in courses.
 
-Assignment Submission – Users can submit assignments for enrolled courses.
+**🎓 Class Access** – Access classes only after enrollment.
 
-Profile Management – Users can update their personal information.
+**📝 Assignment Submission** – Submit assignments for enrolled courses.
 
-Course Filtering – Users can filter courses by category.
+**🧑‍💼 Profile Management** – Update personal information.
 
-View Marks – Users can see marks assigned by admin.
+**🔍 Course Filtering** – Filter courses by category.
 
-User Login Info:
+**📊 View Marks** – Students can view marks given by admin.
 
-Email: damiano@gmail.com
+## User Login Info:
 
-Password: aaaaaa
+**Email**: damiano@gmail.com
 
-Admin Features
+**Password**: aaaaaa
 
-Admin Login – Access admin dashboard.
+# 🛠 Admin Features
 
-Create Other Admins – Admins can create additional admin accounts.
+## All features for administrators:
 
-Add Courses – Admins can add new courses.
+**🔑 Admin Login** – Access admin dashboard.
 
-Assign Marks – Admins can assign marks to student assignments.
+**➕ Create Other Admins** – Admins can create additional admin accounts.
 
-Dashboard Insights – View total courses, enrolled students, and marks assigned.
+**📖 Add Courses** – Admin can add new courses.
 
-Admin Login Info:
+**🏆 Assign Marks** – Admin can assign marks for student assignments.
 
-Email: emily@gmail.com
+**📈 Dashboard Insights** – View total courses, enrolled students, and marks assigned.
 
-Password: aaaaaa
+## Admin Login Info:
 
-Technologies Used
+**Email**: emily@gmail.com
 
-Frontend: React, Tailwind CSS, Swiper JS, React Lucide Icons, React Hot Toast, SweetAlert
+**Password**: aaaaaa
 
-Backend: Express.js, Axios
+# 💻 Technologies Used
 
-Database: MongoDB
+**Frontend**: React, Tailwind CSS, Swiper JS, React Lucide Icons, React Hot Toast, SweetAlert
 
-Authentication: Firebase
+**Backend**: Express.js, Axios
 
-Deployment: Vercel, Firebase
+**Database**: MongoDB
+
+**Authentication**: Firebase
+
+**Deployment**: Vercel, Firebase
