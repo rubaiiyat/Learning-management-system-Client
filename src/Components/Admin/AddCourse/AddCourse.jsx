@@ -11,7 +11,8 @@ const AddCourse = () => {
       price: "",
       image: "",
       category: "",
-      classes: [{ title: "", youtube: "", duration: "", level: "" }],
+      level: "",
+      classes: [{ title: "", youtube: "", duration: "" }],
     },
   });
 
@@ -80,14 +81,15 @@ const AddCourse = () => {
             </label>
             <input
               type="number"
+              step="0.01"
               {...register("price", { required: true, min: 0 })}
-              placeholder="Enter course price in BDT"
+              placeholder="Enter course price"
               className="input input-bordered w-full rounded"
             />
           </div>
 
-          {/* Image + Category */}
-          <div className="grid md:grid-cols-2 gap-5">
+          {/* Image + Category + Level */}
+          <div className="grid md:grid-cols-3 gap-5">
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Cover Image Link</span>
@@ -115,6 +117,24 @@ const AddCourse = () => {
                 <option value="GRE">GRE</option>
                 <option value="GMAT">GMAT</option>
                 <option value="PTE">PTE</option>
+                <option value="SAT">SAT</option>
+                <option value="Duolingo">DUOLINGO</option>
+              </select>
+            </div>
+
+            {/* Level */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text font-medium">Course Level</span>
+              </label>
+              <select
+                {...register("level", { required: true })}
+                className="select select-bordered w-full rounded"
+              >
+                <option value="">Select level</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
               </select>
             </div>
           </div>
@@ -151,15 +171,6 @@ const AddCourse = () => {
                     placeholder="Duration (e.g., 3 weeks)"
                     className="input input-bordered w-full rounded"
                   />
-                  <select
-                    {...register(`classes.${index}.level`)}
-                    className="select select-bordered w-full rounded"
-                  >
-                    <option value="">Select level</option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
-                  </select>
                 </div>
 
                 {fields.length > 1 && (
@@ -176,10 +187,8 @@ const AddCourse = () => {
 
             <button
               type="button"
-              className="btn w-4/12 text-lg rounded bg-success text-white hover:opacity-90 mb-4"
-              onClick={() =>
-                append({ title: "", youtube: "", duration: "", level: "" })
-              }
+              className="btn w-48 text-base lg:text-lg rounded bg-success text-white hover:opacity-90 mb-4"
+              onClick={() => append({ title: "", youtube: "", duration: "" })}
             >
               + Add New Class
             </button>
