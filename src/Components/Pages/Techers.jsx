@@ -78,9 +78,6 @@ const Teachers = () => {
         <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
           Meet Our <span className="text-[#F16623]">Legendary Teachers</span>
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Learn from world-class legends in music and beyond.
-        </p>
       </div>
 
       {/* Teachers Grid */}
